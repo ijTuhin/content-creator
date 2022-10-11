@@ -1,25 +1,33 @@
 import { FiSend } from "react-icons/fi";
+import { AiTwotoneDelete } from "react-icons/ai";
 import React, { useState } from "react";
 
 const AddComment = () => {
   const [commentBox, setCommentBox] = useState([]);
   const [comments, setComments] = useState("");
   const addedComment = (event) => {
-    console.log('added comment: ', event.target.value)
+    console.log("added comment: ", event.target.value);
     setComments(event.target.value);
   };
   const addCommentHandler = () => {
-    setCommentBox(item => [...item, comments]);
-    console.log('Stored comments: ', commentBox.values());
+    setCommentBox((item) => [...item, comments]);
+    console.log("Stored comments: ", commentBox.values());
     setComments("");
   };
   return (
     <div className="mt-10">
-      {commentBox.map((comment) => (
-        <>
-        <p className="border m-1.5">{ comment }</p>
-        </>
+      <div className="m-3 p-2 border-4 border-slate-400 bg-slate-50">
+        {commentBox.map((comment) => (
+          <>
+            <p className="border-2 border-blue-300 bg-blue-50 m-1.5 p-2 flex justify-between">
+              {comment}{" "}
+              <span className="text-[20px] text-gray-500 hover:text-red-500 block">
+                <AiTwotoneDelete />
+              </span>{" "}
+            </p>
+          </>
         ))}
+      </div>
       <div className="px-5 py-4 border-4 flex">
         <textarea
           onChange={addedComment}
